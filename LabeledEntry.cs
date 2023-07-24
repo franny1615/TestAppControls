@@ -4,6 +4,9 @@ namespace TestAppControls;
 
 public class LabeledEntry : ContentView
 {
+	private static readonly int DEFAULT_FONT_SIZE = 16;
+	private static readonly int DEFAULT_MIN_FONT_SIZE = 12;
+
 	public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(
 		nameof(PlaceholderProperty),
 		typeof(string),
@@ -65,12 +68,14 @@ public class LabeledEntry : ContentView
 	{
 		VerticalOptions = LayoutOptions.Center,
 		HorizontalOptions = LayoutOptions.Center,
-		Padding = new Thickness(4,0,4,0)
+		Padding = new Thickness(4,0,4,0),
+		FontSize = DEFAULT_FONT_SIZE 
 	};
 
 	private Entry TextEntry = new Entry
 	{
-		Margin = new Thickness(8,0,8,0)
+		Margin = new Thickness(8,0,8,0),
+		FontSize = DEFAULT_FONT_SIZE
 	};
 
 	public Action<string, string> TextChangedCallback;
@@ -111,14 +116,16 @@ public class LabeledEntry : ContentView
 		if (!string.IsNullOrEmpty(TextEntry.Text))
 			return;
 
-        PlaceholderBorder.TranslateTo(0, 0, 250, Easing.Linear);
+        PlaceholderBorder.TranslateTo(0, 0, 100, Easing.Linear);
         PlaceholderBorder.BackgroundColor = Colors.Transparent;
+        PlaceholderLabel.FontSize = DEFAULT_FONT_SIZE;
     }
 
     private void TextEntry_Focused(object sender, FocusEventArgs e)
     {
         int goUpBy = (int)(EntryFrame.Height / 2) + (int)(PlaceholderLabel.Height / 2);
-        PlaceholderBorder.TranslateTo(0, -goUpBy, 250, Easing.Linear);
+        PlaceholderBorder.TranslateTo(0, -goUpBy, 100, Easing.Linear);
+		PlaceholderLabel.FontSize = DEFAULT_MIN_FONT_SIZE;
     }
 
 	private void TextChanged(object sender, TextChangedEventArgs e)

@@ -33,6 +33,11 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
 	  <CreatePackage>false</CreatePackage>
 	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)'=='net7.0-ios'">
+	  <CodesignKey>Apple Development: Created via API (58CVUJPPM5)</CodesignKey>
+	  <CodesignProvision>VS: WildCard Development</CodesignProvision>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
